@@ -167,15 +167,15 @@ const Restore: FC = () => {
 
       case 'complete':
         if (!restoreData) return;
-        navigation.navigate(
-          CreateWalletModalRoutes.OnekeyLiteRestoreDoneModal,
-          {
-            mnemonic: restoreData,
-            onSuccess: () => {
-              stateNfcDone();
-            },
-          },
-        );
+        // navigation.navigate(
+        //   CreateWalletModalRoutes.OnekeyLiteRestoreDoneModal,
+        //   {
+        //     mnemonic: restoreData,
+        //     onSuccess: () => {
+        //       stateNfcDone();
+        //     },
+        //   },
+        // );
         break;
 
       case 'done':
@@ -236,11 +236,11 @@ const Restore: FC = () => {
         code={errorCode}
         pinRetryCount={pinRetryCount}
         onRetryConnect={() => startNfcScan()}
-        onRetry={() =>
-          navigation.replace(
-            CreateWalletModalRoutes.OnekeyLiteRestorePinCodeVerifyModal,
-          )
-        }
+        // onRetry={() =>
+        //   navigation.replace(
+        //     CreateWalletModalRoutes.OnekeyLiteRestorePinCodeVerifyModal,
+        //   )
+        // }
         onExit={() => {
           goBack();
         }}

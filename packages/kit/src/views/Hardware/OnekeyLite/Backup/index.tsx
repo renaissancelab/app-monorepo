@@ -18,6 +18,7 @@ import {
   CreateWalletModalRoutes,
   CreateWalletRoutesParams,
 } from '@onekeyhq/kit/src/routes';
+import { RootRoutesParams, RootRoutes, ModalRoutes } from '@onekeyhq/kit/src/routes/types'
 import { ModalScreenProps } from '@onekeyhq/kit/src/routes/types';
 import { updateWallet } from '@onekeyhq/kit/src/store/reducers/runtime';
 
@@ -30,7 +31,7 @@ type RouteProps = RouteProp<
   CreateWalletModalRoutes.OnekeyLiteBackupModal
 >;
 
-type NavigationProps = ModalScreenProps<CreateWalletRoutesParams>;
+type NavigationProps = ModalScreenProps<RootRoutesParams>;
 
 const Backup: FC = () => {
   const intl = useIntl();
@@ -194,15 +195,28 @@ const Backup: FC = () => {
       <ErrorDialog
         code={errorCode}
         pinRetryCount={pinRetryCount}
-        onRetry={() =>
-          navigation.replace(
-            CreateWalletModalRoutes.OnekeyLiteBackupPinCodeVerifyModal,
-            {
-              walletId,
-              backupData,
-              onSuccess,
-            },
-          )
+        onRetry={() => {
+          // navigation.replace(RootRoutes.Root)
+          // navigation.replace(RootRoutes.Modal, {
+          //   screen: ModalRoutes.CreateWallet,
+          //   params: {
+          //     screen: CreateWalletModalRoutes.OnekeyLiteBackupPinCodeVerifyModal,
+          //     params: {
+          //       walletId,
+          //       backupData,
+          //       onSuccess,
+          //     }
+          //   }
+          // })
+          // navigation.replace(
+          //   CreateWalletModalRoutes.OnekeyLiteBackupPinCodeVerifyModal,
+          //   {
+          //     walletId,
+          //     backupData,
+          //     onSuccess,
+          //   },
+          // )
+        }
         }
         onRetryConnect={() => {
           startNfcScan(true);

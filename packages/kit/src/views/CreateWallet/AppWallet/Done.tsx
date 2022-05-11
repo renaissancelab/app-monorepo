@@ -14,7 +14,7 @@ import {
   CreateWalletRoutesParams,
 } from '@onekeyhq/kit/src/routes/Modal/CreateWallet';
 
-import { useDrawer, useToast } from '../../../hooks';
+import { useNavigationActions, useToast } from '../../../hooks';
 import { setEnableLocalAuthentication } from '../../../store/reducers/settings';
 import { savePassword } from '../../../utils/localAuthentication';
 
@@ -37,7 +37,7 @@ const Done: FC<DoneProps> = ({
   const navigation = useNavigation();
   const intl = useIntl();
   const toast = useToast();
-  const { closeDrawer } = useDrawer();
+  const { closeDrawer, resetToRoot } = useNavigationActions();
   useEffect(() => {
     async function main() {
       try {
@@ -54,8 +54,9 @@ const Done: FC<DoneProps> = ({
         toast.show({ title: intl.formatMessage({ id: errorKey }) });
       }
       closeDrawer();
-      const inst = navigation.getParent() || navigation;
-      inst.goBack();
+      resetToRoot();
+      // navigation.navigate(RootRoutes.Root)
+      // navigation.navigate(RootRoutes.Root)
     }
     main();
     // eslint-disable-next-line react-hooks/exhaustive-deps

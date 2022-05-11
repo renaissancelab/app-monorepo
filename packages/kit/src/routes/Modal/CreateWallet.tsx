@@ -7,8 +7,8 @@ import CreateWallet from '@onekeyhq/kit/src/views/CreateWallet';
 import AddImportedAccount from '@onekeyhq/kit/src/views/CreateWallet/Account/AddImportedAccount';
 import AddImportedAccountDone from '@onekeyhq/kit/src/views/CreateWallet/Account/AddImportedAccountDone';
 import AddWatchAccount from '@onekeyhq/kit/src/views/CreateWallet/Account/AddWatchAccount';
-import AddExistingWallet from '@onekeyhq/kit/src/views/CreateWallet/AddExistingWallet';
 import AppWallet from '@onekeyhq/kit/src/views/CreateWallet/AppWallet/AppWallet';
+import AddExistingWallet from '@onekeyhq/kit/src/views/CreateWallet/AddExistingWallet';
 import AttentionsView from '@onekeyhq/kit/src/views/CreateWallet/AppWallet/AttentionsView';
 import AppWalletDone from '@onekeyhq/kit/src/views/CreateWallet/AppWallet/Done';
 import ImportWallet from '@onekeyhq/kit/src/views/CreateWallet/AppWallet/ImportWallet';
@@ -197,10 +197,10 @@ const modalRoutes = [
     name: CreateWalletModalRoutes.OnekeyLiteRestorePinCodeVerifyModal,
     component: OnekeyLiteRestorePinCode,
   },
-  {
-    name: CreateWalletModalRoutes.OnekeyLiteRestoreModal,
-    component: OnekeyLiteRestore,
-  },
+  // {
+  //   name: CreateWalletModalRoutes.OnekeyLiteRestoreModal,
+  //   component: OnekeyLiteRestore,
+  // },
   {
     name: CreateWalletModalRoutes.OnekeyLiteRestoreDoneModal,
     component: OnekeyLiteRestoreDoneView,
@@ -209,10 +209,10 @@ const modalRoutes = [
     name: CreateWalletModalRoutes.OnekeyLiteBackupPinCodeVerifyModal,
     component: OnekeyLiteBackupPinCode,
   },
-  {
-    name: CreateWalletModalRoutes.OnekeyLiteBackupModal,
-    component: OnekeyLiteBackup,
-  },
+  // {
+  //   name: CreateWalletModalRoutes.OnekeyLiteBackupModal,
+  //   component: OnekeyLiteBackup,
+  // },
   {
     name: CreateWalletModalRoutes.AddExistingWalletModal,
     component: AddExistingWallet,

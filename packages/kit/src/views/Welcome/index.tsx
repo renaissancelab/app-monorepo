@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 
 import { useNavigation } from '@react-navigation/core';
 import { useIntl } from 'react-intl';
-import { Platform } from 'react-native';
 
 import {
   Box,
@@ -18,19 +17,16 @@ import {
 import logo from '../../../assets/logo.png';
 import backgroundApiProxy from '../../background/instance/backgroundApiProxy';
 import { useHelpLink } from '../../hooks/useHelpLink';
+import useOpenBrowser from '../../hooks/useOpenBrowser';
 import { CreateWalletModalRoutes } from '../../routes/Modal/CreateWallet';
-import {
-  OnboardingRoutes,
-  OnboardingRoutesParams,
-  OnboardingStackRoutes,
-} from '../../routes/Onboarding/types';
+import { ModalRoutes, RootRoutes, RootRoutesParams } from '../../routes/types';
 import { setBoardingCompleted } from '../../store/reducers/status';
 
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type NavigationProps = NativeStackNavigationProp<
-  OnboardingRoutesParams,
-  OnboardingRoutes.Stack
+  RootRoutesParams,
+  RootRoutes.Welcome
 >;
 
 const Welcome = () => {
@@ -38,6 +34,7 @@ const Welcome = () => {
   const navigation = useNavigation<NavigationProps>();
   const { bottom } = useSafeAreaInsets();
   const isVertical = useIsVerticalLayout();
+  const { openUrl } = useOpenBrowser();
 
   const userAgreementUrl = useHelpLink({ path: 'articles/360002014776' });
   const privacyPolicyUrl = useHelpLink({ path: 'articles/360002003315' });
@@ -45,52 +42,45 @@ const Welcome = () => {
   const { dispatch } = backgroundApiProxy;
   const onSkip = useCallback(() => {
     dispatch(setBoardingCompleted());
-  }, [dispatch]);
+    navigation.navigate(RootRoutes.Root);
+  }, [dispatch, navigation]);
 
   const onCreate = useCallback(() => {
-    navigation.navigate(OnboardingRoutes.Modal, {
-      screen: CreateWalletModalRoutes.CreateWalletModal,
+    navigation.navigate(RootRoutes.Modal, {
+      screen: ModalRoutes.CreateWallet,
+      params: {
+        screen: CreateWalletModalRoutes.CreateWalletModal,
+      },
     });
   }, [navigation]);
 
   const onRestore = useCallback(() => {
-    navigation.navigate(OnboardingRoutes.Modal, {
-      screen: CreateWalletModalRoutes.AddExistingWalletModal,
-      params: { mode: 'all' },
+    navigation.navigate(RootRoutes.Modal, {
+      screen: ModalRoutes.CreateWallet,
+      params: {
+        screen: CreateWalletModalRoutes.AddExistingWalletModal,
+        params: { mode: 'all' },
+      },
     });
   }, [navigation]);
 
-  const onOpenUrl = useCallback(
-    (url: string, title?: string) => {
-      if (['android', 'ios'].includes(Platform.OS)) {
-        navigation.navigate(OnboardingRoutes.Stack, {
-          screen: OnboardingStackRoutes.Webview,
-          params: { url, title },
-        });
-      } else {
-        window.open(url, '_blank');
-      }
-    },
-    [navigation],
-  );
-
   const onOpenUserAgreement = useCallback(() => {
-    onOpenUrl(
+    openUrl(
       userAgreementUrl,
       intl.formatMessage({
         id: 'form__user_agreement',
       }),
     );
-  }, [intl, onOpenUrl, userAgreementUrl]);
+  }, [intl, openUrl, userAgreementUrl]);
 
   const onOpenPrivacyPolicy = useCallback(() => {
-    onOpenUrl(
+    openUrl(
       privacyPolicyUrl,
       intl.formatMessage({
         id: 'form__privacy_policy',
       }),
     );
-  }, [intl, onOpenUrl, privacyPolicyUrl]);
+  }, [intl, openUrl, privacyPolicyUrl]);
 
   return (
     <Center w="full" h="full" bg="surface-default" pt="32">

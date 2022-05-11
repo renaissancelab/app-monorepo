@@ -38,4 +38,5 @@ export enum RootRoutes {
   Root = 'root',
   Modal = 'modal',
   Tab = 'tab',
+  Welcome = 'Welcome',
 }
