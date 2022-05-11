@@ -197,10 +197,10 @@ const modalRoutes = [
     name: CreateWalletModalRoutes.OnekeyLiteRestorePinCodeVerifyModal,
     component: OnekeyLiteRestorePinCode,
   },
-  // {
-  //   name: CreateWalletModalRoutes.OnekeyLiteRestoreModal,
-  //   component: OnekeyLiteRestore,
-  // },
+  {
+    name: CreateWalletModalRoutes.OnekeyLiteRestoreModal,
+    component: OnekeyLiteRestore,
+  },
   {
     name: CreateWalletModalRoutes.OnekeyLiteRestoreDoneModal,
     component: OnekeyLiteRestoreDoneView,
@@ -209,10 +209,10 @@ const modalRoutes = [
     name: CreateWalletModalRoutes.OnekeyLiteBackupPinCodeVerifyModal,
     component: OnekeyLiteBackupPinCode,
   },
-  // {
-  //   name: CreateWalletModalRoutes.OnekeyLiteBackupModal,
-  //   component: OnekeyLiteBackup,
-  // },
+  {
+    name: CreateWalletModalRoutes.OnekeyLiteBackupModal,
+    component: OnekeyLiteBackup,
+  },
   {
     name: CreateWalletModalRoutes.AddExistingWalletModal,
     component: AddExistingWallet,
