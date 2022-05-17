@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { Box, OverlayContainer } from '@onekeyhq/components';
 import platformEnv from '@onekeyhq/shared/src/platformEnv';
 
-import { useAppSelector } from '../../hooks/redux';
+import { useAppSelector, useStatus } from '../../hooks/redux';
+import { useDebounce } from '../../hooks';
 
 import { AppStateHeartbeat } from './AppStateHeartbeat';
 import { AppStateUnlock } from './AppStateUnlock';
@@ -39,8 +40,13 @@ export const AppLockNormalMode: FC<AppLockProps> = ({ children }) => {
   const isStatusUnlock = useAppSelector((s) => s.status.isUnlock);
   const isDataUnlock = useAppSelector((s) => s.data.isUnlock);
 
-  const prerequisites = isPasswordSet && enableAppLock;
-  const isUnlock = isDataUnlock && isStatusUnlock;
+  const { enableAppLock: _enableAppLock, isPasswordSet: _isPasswordSet, isStatusUnlock: _isStatusUnlock, isDataUnlock: _isDataUnlock  } = useDebounce({ enableAppLock, isPasswordSet, isStatusUnlock, isDataUnlock }, 300)
+
+  const prerequisites = _isPasswordSet && _enableAppLock;
+  const isUnlock = _isDataUnlock && _isStatusUnlock;
+
+  // const prerequisites = isPasswordSet && enableAppLock;
+  // const isUnlock = isDataUnlock && isStatusUnlock;
 
   if (prerequisites && !isUnlock) {
     return <AppStateUnlock />;

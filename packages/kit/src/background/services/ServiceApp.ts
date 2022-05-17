@@ -160,12 +160,13 @@ class ServiceApp extends ServiceBase {
       dispatch(passwordSet());
       dispatch(setEnableAppLock(true));
     }
+    dispatch(unlock());
+    dispatch(release());
+
     const status: { boardingCompleted: boolean } = appSelector((s) => s.status);
     if (!status.boardingCompleted) {
       dispatch(setBoardingCompleted());
     }
-    dispatch(unlock());
-    dispatch(release());
   }
 
   @backgroundMethod()
