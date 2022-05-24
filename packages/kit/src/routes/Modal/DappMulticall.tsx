@@ -5,19 +5,12 @@ import ContractData from '@onekeyhq/kit/src/views/DappModals/ContractData';
 import Multicall from '@onekeyhq/kit/src/views/DappModals/Multicall';
 import TransactionEditFee from '@onekeyhq/kit/src/views/Send/SendEditFee';
 
+import {
+  DappMulticallModalRoutes,
+  DappMulticallRoutesParams,
+} from '../../views/DappModals/types';
+
 import createStackNavigator from './createStackNavigator';
-
-export enum DappMulticallModalRoutes {
-  MulticallModal = 'MulticallModal',
-  EditFeeModal = 'EditFeeModal',
-  ContractDataModal = 'ContractDataModal',
-}
-
-export type DappMulticallRoutesParams = {
-  [DappMulticallModalRoutes.MulticallModal]: undefined;
-  [DappMulticallModalRoutes.EditFeeModal]: undefined;
-  [DappMulticallModalRoutes.ContractDataModal]: { contractData: string };
-};
 
 const DappMulticallModalNavigator =
   createStackNavigator<DappMulticallRoutesParams>();
@@ -58,3 +51,5 @@ const DappMulticallStack = () => {
 };
 
 export default DappMulticallStack;
+export type { DappMulticallRoutesParams };
+export { DappMulticallModalRoutes };

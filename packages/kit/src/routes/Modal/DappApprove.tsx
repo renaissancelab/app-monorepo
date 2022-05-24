@@ -6,21 +6,12 @@ import ContractData from '@onekeyhq/kit/src/views/DappModals/ContractData';
 import SpendLimitAmount from '@onekeyhq/kit/src/views/DappModals/SpendLimitAmount';
 import TransactionEditFee from '@onekeyhq/kit/src/views/Send/SendEditFee';
 
+import {
+  DappApproveModalRoutes,
+  DappApproveRoutesParams,
+} from '../../views/DappModals/types';
+
 import createStackNavigator from './createStackNavigator';
-
-export enum DappApproveModalRoutes {
-  ApproveModal = 'ApproveModal',
-  SpendLimitModal = 'SpendLimitModal',
-  EditFeeModal = 'EditFeeModal',
-  ContractDataModal = 'ContractDataModal',
-}
-
-export type DappApproveRoutesParams = {
-  [DappApproveModalRoutes.ApproveModal]?: { spendLimit?: string };
-  [DappApproveModalRoutes.SpendLimitModal]: undefined;
-  [DappApproveModalRoutes.EditFeeModal]: undefined;
-  [DappApproveModalRoutes.ContractDataModal]: { contractData: string };
-};
 
 const DappApproveModalNavigator =
   createStackNavigator<DappApproveRoutesParams>();
@@ -65,3 +56,5 @@ const DappApproveStack = () => {
 };
 
 export default DappApproveStack;
+export type { DappApproveRoutesParams };
+export { DappApproveModalRoutes };

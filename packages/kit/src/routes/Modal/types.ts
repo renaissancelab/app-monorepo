@@ -7,10 +7,12 @@ export type { HistoryRequestModalRoutesParams } from './HistoryRequest';
 export type { TransactionDetailRoutesParams } from './TransactionDetail';
 export type { OnekeyLiteChangePinRoutesParams } from './HardwareOnekeyLiteChangePin';
 export type { OnekeyLiteResetRoutesParams } from './HardwareOnekeyLiteReset';
-export type { SendRoutesParams } from './Send';
-export type { DappApproveRoutesParams } from './DappApprove';
-export type { DappMulticallRoutesParams } from './DappMulticall';
-export type { DappConnectionRoutesParams } from './DappConnection';
+export type { SendRoutesParams } from '../../views/Send/types';
+export type {
+  DappMulticallRoutesParams,
+  DappApproveRoutesParams,
+  DappConnectionRoutesParams,
+} from '../../views/DappModals/types';
 export type { PasswordRoutesParams } from './Password';
 export type { ManageTokenRoutesParams } from './ManageToken';
 export type { CollectiblesRoutesParams } from './Collectibles';
