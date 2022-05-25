@@ -8,6 +8,7 @@ const App: FC = function () {
     <>
       <div
         style={{
+          zIndex: 2,
           position: 'fixed',
           width: '100%',
           height: 28,
@@ -15,10 +16,14 @@ const App: FC = function () {
           // @ts-expect-error
           WebkitAppRegion: 'drag',
           WebkitUserSelect: 'none',
-          pointerEvents: 'none',
+          // pointerEvents: 'none',
           // '-webkit-app-region': 'drag',
           // '-webkit-user-select': 'none',
           // 'pointer-events': 'none',
+        }}
+        onDoubleClick={() => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+          window?.desktopApi?.toggleMaximizeWindow();
         }}
       />
       <Provider />

@@ -17,6 +17,7 @@ import type { BottomTabBarProps } from '../BottomTabs/types';
 
 const Sidebar: FC<BottomTabBarProps> = ({ navigation, state, descriptors }) => {
   const { routes } = state;
+
   const [activeFontColor, inactiveFontColor] = useThemeValue([
     'text-default',
     'text-subdued',
@@ -36,7 +37,7 @@ const Sidebar: FC<BottomTabBarProps> = ({ navigation, state, descriptors }) => {
         <ScrollView
           _contentContainerStyle={{
             flex: 1,
-            py: platformEnv.isDesktopMac && platformEnv.isDesktop ? 12 : 5,
+            py: platformEnv.isDesktopMac ? 12 : 5,
             px: 4,
           }}
         >
