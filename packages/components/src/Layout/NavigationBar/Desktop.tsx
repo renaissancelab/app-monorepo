@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import { CommonActions } from '@react-navigation/native';
+import usePress from 'use-double-press';
 
 import platformEnv from '@onekeyhq/shared/src/platformEnv';
 
@@ -17,6 +18,13 @@ import type { BottomTabBarProps } from '../BottomTabs/types';
 
 const Sidebar: FC<BottomTabBarProps> = ({ navigation, state, descriptors }) => {
   const { routes } = state;
+  const pressHandler = usePress({
+    onDoublePress: () => {
+      if (platformEnv.isDesktop) window.desktopApi.toggleMaximizeWindow();
+    },
+    delay: 200,
+  });
+
   const [activeFontColor, inactiveFontColor] = useThemeValue([
     'text-default',
     'text-subdued',
@@ -32,11 +40,16 @@ const Sidebar: FC<BottomTabBarProps> = ({ navigation, state, descriptors }) => {
       borderRightColor="border-subdued"
     >
       <VStack flex={1}>
+        {!!platformEnv.isDesktopMac && (
+          <Pressable onPress={pressHandler}>
+            <Box w="100%" height={12} />
+          </Pressable>
+        )}
         {/* Scrollable area */}
         <ScrollView
           _contentContainerStyle={{
             flex: 1,
-            py: platformEnv.isDesktopMac && platformEnv.isDesktop ? 12 : 5,
+            py: platformEnv.isDesktopMac ? 0 : 5,
             px: 4,
           }}
         >

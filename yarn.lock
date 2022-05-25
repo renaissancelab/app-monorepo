@@ -24336,6 +24336,11 @@ use-deep-compare@^1.1.0:
   dependencies:
     dequal "1.0.0"
 
+use-double-press@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/use-double-press/-/use-double-press-1.0.0.tgz#dfbb5368e731c62ef33fb197cf372d40739f57d6"
+  integrity sha512-zsSaMECLKtVdD0HEqTqV5glYwVjolzZmTDdT9M/XE0kFq4wBpgcye661YQLa59pYyH7xvy/KXqOIqgepfakX+A==
+
 use-memo-one@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/use-memo-one/-/use-memo-one-1.1.2.tgz#0c8203a329f76e040047a35a1197defe342fab20"
